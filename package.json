@@ -12,7 +12,7 @@
   "activationEvents": [
     "onCommand:go-to-tests.helloWorld"
   ],
-  "main": "./out/extension.js",
+  "main": "./out/src/extension.js",
   "contributes": {
     "commands": [
       {
@@ -24,7 +24,7 @@
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
-    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts}' --fix",
+    "lint": "eslint '*/**/*.{js,ts}' --fix",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "test": "node ./out/test/runTest.js"
@@ -54,6 +54,7 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
+      "tsc --noEmit",
       "eslint --cache --fix"
     ]
   }
