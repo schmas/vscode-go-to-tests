@@ -3,9 +3,9 @@ import GotoTests from './GotoTests';
 import { LoggingService } from './LoggingService';
 
 export function activate(context: vscode.ExtensionContext): void {
-  const loggingService = new LoggingService();
+  const log = new LoggingService();
 
-  context.subscriptions.push(new GotoTests(loggingService));
+  context.subscriptions.push(new GotoTests(log));
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand

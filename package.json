@@ -57,5 +57,6 @@
       "tsc --noEmit",
       "eslint --cache --fix"
     ]
-  }
+  },
+  "dependencies": {}
 }
