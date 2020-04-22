@@ -38,14 +38,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm install
-
       - name: Cache vscode-test
         id: cache-vscode-test
         uses: actions/cache@v1
         with:
           path: .vscode-test
           key: ${{ runner.os }}-vscode-test-${{ steps.npm-cache.outputs.vscode_version }}
+
+      - run: npm install
 
       - name: Run tests
         uses: GabrielBB/xvfb-action@v1.0
