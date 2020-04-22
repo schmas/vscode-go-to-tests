@@ -1,6 +1,6 @@
 import { workspace, window } from 'vscode';
-import { Rule, DEFAULT_RULES } from './rule';
 import * as fs from 'fs';
+import { DEFAULT_RULES, Rule } from './rule';
 
 let rules = DEFAULT_RULES;
 
