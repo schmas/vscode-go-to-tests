@@ -1,4 +1,4 @@
-![.github/workflows/main.yml](https://github.com/schmas/vscode-go-to-tests/workflows/.github/workflows/main.yml/badge.svg?branch=master)
+![build](https://github.com/schmas/vscode-go-to-tests/workflows/build/badge.svg?branch=master)
 
 # go-to-tests README
 
