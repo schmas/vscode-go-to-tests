@@ -5,7 +5,7 @@ import { DEFAULT_RULES, Rule } from './rule';
 let rules = DEFAULT_RULES;
 
 export function updateFromConfig(): void {
-  const configuration = workspace.getConfiguration('test-switcher');
+  const configuration = workspace.getConfiguration('jump-to-tests');
   const extraRules: Rule[] = configuration.get('rules') || [];
   rules = [...extraRules, ...DEFAULT_RULES];
 }

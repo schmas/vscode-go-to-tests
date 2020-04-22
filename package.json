@@ -14,7 +14,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:jump-to-tests.jump"
+    "onCommand:jump-to-tests.jump",
+    "onCommand:jump-to-tests.jump2"
   ],
   "main": "./out/main/extension.js",
   "contributes": {
@@ -32,6 +33,10 @@
       {
         "command": "jump-to-tests.jump",
         "title": "Jump to Tests: Jump"
+      },
+      {
+        "command": "jump-to-tests.jump2",
+        "title": "Jump to Tests: Jump2"
       }
     ],
     "keybindings": [
@@ -39,6 +44,12 @@
         "command": "jump-to-tests.jump",
         "key": "ctrl+shift+t",
         "mac": "cmd+shift+t",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "jump-to-tests.jump2",
+        "key": "ctrl+shift+y",
+        "mac": "cmd+shift+y",
         "when": "editorTextFocus"
       }
     ]
