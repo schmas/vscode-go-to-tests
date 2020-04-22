@@ -1,27 +1,27 @@
 {
-  "name": "go-to-tests",
-  "displayName": "Go to Tests",
+  "name": "jump-to-tests",
+  "displayName": "Jump to Tests",
   "description": "Switch between the code and the test file",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.44.0"
   },
   "repository": {
-    "url": "https://github.com/schmas/vscode-go-to-tests"
+    "url": "https://github.com/schmas/vscode-jump-to-tests"
   },
-  "icon": "images/go-to-tests.png",
+  "icon": "images/jump-to-tests.png",
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:go-to-tests.jump"
+    "onCommand:jump-to-tests.jump"
   ],
-  "main": "./out/src/main/extension.js",
+  "main": "./out/main/extension.js",
   "contributes": {
     "configuration": {
-      "title": "Go to Tests",
+      "title": "Jump to Tests",
       "properties": {
-        "go-to-tests.rules": {
+        "jump-to-tests.rules": {
           "type": "array",
           "description": "Additional {pattern, replacement} rules - see extension description",
           "default": []
@@ -30,13 +30,13 @@
     },
     "commands": [
       {
-        "command": "go-to-tests.jump",
-        "title": "Go to Tests: Jump"
+        "command": "jump-to-tests.jump",
+        "title": "Jump to Tests: Jump"
       }
     ],
     "keybindings": [
       {
-        "command": "go-to-tests.jump",
+        "command": "jump-to-tests.jump",
         "key": "ctrl+shift+t",
         "mac": "cmd+shift+t",
         "when": "editorTextFocus"

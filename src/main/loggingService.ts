@@ -4,7 +4,7 @@ import { window } from 'vscode';
 type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
 
 export class LoggingService {
-  private outputChannel = window.createOutputChannel('Go To Tests');
+  private outputChannel = window.createOutputChannel('Jump To Tests');
 
   private logLevel: LogLevel = 'DEBUG';
 
