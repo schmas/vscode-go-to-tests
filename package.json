@@ -6,18 +6,40 @@
   "engines": {
     "vscode": "^1.44.0"
   },
+  "repository": {
+    "url": "https://github.com/schmas/vscode-go-to-tests"
+  },
+  "icon": "images/go-to-tests.png",
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:go-to-tests.helloWorld"
+    "onCommand:go-to-tests.jump"
   ],
   "main": "./out/src/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Go to Tests",
+      "properties": {
+        "go-to-tests.rules": {
+          "type": "array",
+          "description": "Additional {pattern, replacement} rules - see extension description",
+          "default": []
+        }
+      }
+    },
     "commands": [
       {
-        "command": "go-to-tests.helloWorld",
-        "title": "Hello World"
+        "command": "go-to-tests.jump",
+        "title": "Go to Tests: Jump"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "go-to-tests.jump",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus"
       }
     ]
   },

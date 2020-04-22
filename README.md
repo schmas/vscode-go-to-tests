@@ -49,6 +49,10 @@ Fixed issue #.
 
 Added features X, Y, and Z.
 
+## Based on
+
+- https://github.com/bmalehorn/vscode-test-switcher
+
 -----------------------------------------------------------------------------------------------------------
 
 ## Working with Markdown

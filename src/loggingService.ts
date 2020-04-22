@@ -95,3 +95,5 @@ export class LoggingService {
     }
   }
 }
+
+export const log = new LoggingService();

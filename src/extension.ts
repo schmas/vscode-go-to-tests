@@ -1,23 +1,15 @@
-import * as vscode from 'vscode';
-import GotoTests from './GotoTests';
-import { LoggingService } from './LoggingService';
+import { ExtensionContext, commands, workspace } from 'vscode';
+import { log } from './loggingService';
+import { doSwitch, updateFromConfig } from './gotoTests';
 
-export function activate(context: vscode.ExtensionContext): void {
-  const log = new LoggingService();
+export function activate(context: ExtensionContext): void {
+  log.debug('Initializing Go to Tests...');
 
-  context.subscriptions.push(new GotoTests(log));
+  context.subscriptions.push(commands.registerCommand('go-to-tests.jump', doSwitch));
+  context.subscriptions.push(workspace.onDidChangeConfiguration(updateFromConfig));
 
-  // The command has been defined in the package.json file
-  // Now provide the implementation of the command with registerCommand
-  // The commandId parameter must match the command field in package.json
-  const disposable = vscode.commands.registerCommand('go-to-tests.helloWorld', () => {
-    // The code you place here will be executed every time your command is executed
-
-    // Display a message box to the user
-    vscode.window.showInformationMessage('Hello World from Go to Tests!');
-  });
-
-  context.subscriptions.push(disposable);
+  updateFromConfig();
+  log.info('Go to Tests is now active!');
 }
 
 // this method is called when your extension is deactivated
