@@ -25,7 +25,7 @@ export function match(path: string, rule: Rule): string | undefined {
   return replaced;
 }
 
-export async function doSwitch(): Promise<void> {
+export async function jump(): Promise<void> {
   const editor = window.activeTextEditor;
   if (!editor) {
     return;
