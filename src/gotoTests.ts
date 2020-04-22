@@ -10,7 +10,7 @@ export function updateFromConfig(): void {
   rules = [...extraRules, ...DEFAULT_RULES];
 }
 
-function match(path: string, rule: Rule): string | undefined {
+export function match(path: string, rule: Rule): string | undefined {
   const { pattern, replacement } = rule;
   let regex: RegExp;
   try {
