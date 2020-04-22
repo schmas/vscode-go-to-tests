@@ -33,6 +33,7 @@ jobs:
 
       - name: Cache npm
         uses: actions/cache@v1
+        if: runner.os != 'Windows'
         with:
           path: ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
