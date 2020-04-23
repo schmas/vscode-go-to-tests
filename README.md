@@ -36,16 +36,22 @@ If you have any requirements or dependencies, add a section describing those and
 
 You can add your own formats by editing `jump-to-tests.rules`.
 
-Here's what it would look like to add Ruby on Rails support:
+Here"s what it would look like to add Ruby on Rails support:
 
 ```json
 "jump-to-tests.rules": [
-  { "pattern": "app/(.*)\\.rb", "replacement": "spec/$1_spec.rb" },
-  { "pattern": "spec/(.*)_spec\\.rb", "replacement": "app/$1.rb" },
+  {
+    "extensions": [
+        { "ext": ".ts", "testExt": [".test.ts", ".test.tsx"] },
+        { "ext": ".tsx", "testExt": [".test.tsx", ".test.ts"] },
+    ],
+    "srcDirs": ["src", "client", "server"],
+    "testDirs": ["src/test", "src/__tests__", "tests/client", "tests/server", "test", "__tests__"]
+  }
 ]
 ```
 
-Effectively, this extension runs `path.replace(new RegExp(pattern), replacement)`. If the source file matches the regex the replaced filename exists, you'll switch to that file. Otherwise, it will try the next rule.
+Effectively, this extension runs `path.replace(new RegExp(pattern), replacement)`. If the source file matches the regex the replaced filename exists, you"ll switch to that file. Otherwise, it will try the next rule.
 
 ## Release Notes
 

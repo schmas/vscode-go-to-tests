@@ -1,16 +1,16 @@
 import { ExtensionContext, commands, workspace } from 'vscode';
 import { log } from './loggingService';
-import { jump, updateFromConfig } from './commands';
-import { jump as jump2, updateFromConfig as updateFromConfig2 } from './commandsv2';
+import { jump } from './commands';
+import { updateLogConfig, updateAllConfigs } from './config';
 
 export function activate(context: ExtensionContext): void {
+  updateLogConfig();
   log.debug('Initializing Jump to Tests...');
 
-  context.subscriptions.push(commands.registerCommand('jump-to-tests.jump2', jump2));
-  context.subscriptions.push(workspace.onDidChangeConfiguration(updateFromConfig2));
+  context.subscriptions.push(commands.registerCommand('jump-to-tests.jump', jump));
+  context.subscriptions.push(workspace.onDidChangeConfiguration(updateAllConfigs));
 
-  updateFromConfig();
-  updateFromConfig2();
+  updateAllConfigs();
   log.info('Jump to Tests is now active!');
 }
 

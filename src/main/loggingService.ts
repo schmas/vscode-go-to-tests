@@ -1,7 +1,7 @@
 // tslint:disable-next-line: no-implicit-dependencies
 import { window } from 'vscode';
 
-type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
+export type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'NONE';
 
 export class LoggingService {
   private outputChannel = window.createOutputChannel('Jump To Tests');

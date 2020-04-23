@@ -15,7 +15,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:jump-to-tests.jump2"
+    "onCommand:jump-to-tests.jump"
   ],
   "main": "./out/main/extension.js",
   "contributes": {
@@ -24,20 +24,34 @@
       "properties": {
         "jump-to-tests.rules": {
           "type": "array",
-          "description": "Additional {pattern, replacement} rules - see extension description",
-          "default": []
+          "description": "Additional rules - see extension description",
+          "default": [],
+          "scope": "resource"
+        },
+        "jump-to-tests.logLevel": {
+          "type": "string",
+          "enum": [
+            "DEBUG",
+            "INFO",
+            "WARN",
+            "ERROR",
+            "NONE"
+          ],
+          "default": "INFO",
+          "markdownDescription": "Log Level",
+          "scope": "resource"
         }
       }
     },
     "commands": [
       {
-        "command": "jump-to-tests.jump2",
-        "title": "Jump to Tests: Jump2"
+        "command": "jump-to-tests.jump",
+        "title": "Jump to Tests: Jump"
       }
     ],
     "keybindings": [
       {
-        "command": "jump-to-tests.jump2",
+        "command": "jump-to-tests.jump",
         "key": "ctrl+shift+t",
         "mac": "cmd+shift+t",
         "when": "editorTextFocus"
