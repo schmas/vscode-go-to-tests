@@ -17,11 +17,11 @@ export const DEFAULT_RULES: Rule[] = [
 
   {
     extensions: [
-      { ext: '.ts', testExt: ['.test.ts'] },
-      { ext: '.tsx', testExt: ['.test.tsx'] },
+      { ext: '.ts', testExt: ['.test.ts', '.test.tsx'] },
+      { ext: '.tsx', testExt: ['.test.tsx', '.test.ts'] },
     ],
-    srcDirs: ['src'],
-    testDirs: ['src/test', 'src/__tests__', 'test', '__tests__'],
+    srcDirs: ['src', 'client', 'server'],
+    testDirs: ['src/test', 'src/__tests__', 'tests/client', 'tests/server', 'test', '__tests__'],
   },
 
   // // *.* => test/*.test.*

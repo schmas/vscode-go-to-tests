@@ -6,9 +6,7 @@ import { jump as jump2, updateFromConfig as updateFromConfig2 } from './commands
 export function activate(context: ExtensionContext): void {
   log.debug('Initializing Jump to Tests...');
 
-  context.subscriptions.push(commands.registerCommand('jump-to-tests.jump', jump));
   context.subscriptions.push(commands.registerCommand('jump-to-tests.jump2', jump2));
-  context.subscriptions.push(workspace.onDidChangeConfiguration(updateFromConfig));
   context.subscriptions.push(workspace.onDidChangeConfiguration(updateFromConfig2));
 
   updateFromConfig();

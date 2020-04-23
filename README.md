@@ -1,18 +1,32 @@
-![build](https://github.com/schmas/vscode-jump-to-tests/workflows/build/badge.svg?branch=master)
+# Jump to Tests
 
-# jump-to-tests README
+<!-- [![build](https://github.com/schmas/vscode-jump-to-tests/workflows/build/badge.svg?branch=master)]() -->
 
-This is the README for your extension "jump-to-tests". After writing up a brief description, we recommend including the following sections.
+Switch between the code and the test file.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+On MacOS, press `Shift+Cmd+T`.
 
-For example if there is an image subfolder under your extension project workspace:
+On Windows / Linux, press `Shift+Ctrl+T`.
 
-\!\[feature X\]\(images/feature-x.png\)
+The following formats are supported:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+| framework               | application file       | unit test file          |
+| ----------------------- | ---------------------- | ----------------------- |
+| JavaScript / TypeScript | `*.js` †               | `__tests__/*.test.js`   |
+| JavaScript / TypeScript | `*.js` †               | `test/*.test.js`        |
+| JavaScript / TypeScript | `*.js` †               | `test/suite/*.test.js`  |
+| JavaScript / TypeScript | `*.js` †               | `*.test.js`             |
+| Python                  | `*.py`                 | `test/test_*.py`        |
+| Python                  | `src/*/*.py`           | `test/*/test_*.py`      |
+| Go                      | `*.go`                 | `*_test.go`             |
+| Ruby on Rails 1-5       | `app/*/*.rb`           | `spec/*/*_spec.rb`      |
+| Ruby on Rails 6+        | `app/*/*.rb`           | `test/*/*_test.rb`      |
+| Ruby minitest           | `app/*.rb`             | `test/unit/*_test.rb`   |
+| Ruby minitest           | `app/controllers/*.rb` | `test/integration/*.rb` |
+
+† Also supports `.jsx`, `.ts`, `.tsx`.
 
 ## Requirements
 
@@ -20,52 +34,25 @@ If you have any requirements or dependencies, add a section describing those and
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+You can add your own formats by editing `jump-to-tests.rules`.
 
-For example:
+Here's what it would look like to add Ruby on Rails support:
 
-This extension contributes the following settings:
+```json
+"jump-to-tests.rules": [
+  { "pattern": "app/(.*)\\.rb", "replacement": "spec/$1_spec.rb" },
+  { "pattern": "spec/(.*)_spec\\.rb", "replacement": "app/$1.rb" },
+]
+```
 
-- `myExtension.enable`: enable/disable this extension
-- `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Effectively, this extension runs `path.replace(new RegExp(pattern), replacement)`. If the source file matches the regex the replaced filename exists, you'll switch to that file. Otherwise, it will try the next rule.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+See [CHANGELOG.md](./CHANGELOG.md).
 
-### 1.0.0
+## Similar Projects
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
-## Based on
-
-- https://github.com/bmalehorn/vscode-test-switcher
-
----
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-- Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-- Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- [Test Switcher](https://github.com/bmalehorn/vscode-test-switcher) (Based on this)
+- [Rails Go to Spec](https://marketplace.visualstudio.com/items?itemName=sporto.rails-go-to-spec)
+- [File Switcher](https://marketplace.visualstudio.com/items?itemName=johnathanludwig.fileswitcher)
