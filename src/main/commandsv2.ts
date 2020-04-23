@@ -1,7 +1,10 @@
-import { workspace, window } from 'vscode';
-import { DEFAULT_RULES, Rule } from './rulev2';
+import * as fs from 'fs';
+import * as path from 'path';
+import { ParsedPath } from 'path';
+import { window, workspace } from 'vscode';
 import { log } from './loggingService';
-import path = require('path');
+import { DEFAULT_RULES, Rule } from './rulev2';
+import { chain } from 'lodash';
 
 let rules = DEFAULT_RULES;
 
@@ -11,23 +14,49 @@ export function updateFromConfig(): void {
   rules = [...extraRules, ...DEFAULT_RULES];
 }
 
-// export function match(fileExtension: string, path: string, rule: Rule): string | undefined {
-//   const { srcDirs, testDirs } = rule;
-//   let regex: RegExp;
-//   try {
-//     regex = new RegExp(pattern);
-//   } catch {
-//     return;
-//   }
-//   if (!path.match(regex)) {
-//     return;
-//   }
-//   const replaced = path.replace(regex, replacement);
-//   return replaced;
-// }
+export function match(parsedPath: ParsedPath, rule: Rule): string[] {
+  const possibleMatches: string[] = [];
+  const { extensions, srcDirs, testDirs } = rule;
+
+  const srcDir = srcDirs.find((s) => parsedPath.dir.startsWith(s));
+  const testDir = testDirs.find((s) => parsedPath.dir.startsWith(s));
+
+  if (testDir) {
+    const dirWithoutSrc = parsedPath.dir.replace(testDir, '');
+
+    log.debug(dirWithoutSrc);
+
+    const mathedExts = extensions.filter((e) => e.testExt.some((_e) => parsedPath.base.endsWith(_e)));
+    const baseName = chain(mathedExts)
+      .flatMap((_ext) => _ext.testExt)
+      .filter((_testExt) => parsedPath.base.endsWith(_testExt))
+      .uniq()
+      .map((_foundTestExt) => parsedPath.base.replace(_foundTestExt, ''))
+      .head()
+      .value();
+
+    mathedExts.forEach((ext) => {
+      srcDirs.forEach((_srcDir) => {
+        possibleMatches.push(path.join(_srcDir, dirWithoutSrc, `${baseName}${ext.ext}`));
+      });
+    });
+  } else if (srcDir) {
+    const dirWithoutSrc = parsedPath.dir.replace(srcDir, '');
+
+    extensions
+      .find((e) => e.ext === parsedPath.ext)
+      ?.testExt.forEach((_testExt) => {
+        testDirs.forEach((_testDir) => {
+          possibleMatches.push(path.join(_testDir, dirWithoutSrc, `${parsedPath.name}${_testExt}`));
+        });
+      });
+  }
+
+  return possibleMatches;
+}
 
 function findRule(fileExtension: string): Rule | undefined {
-  const rule = rules.find((r) => r.extensions.some((e) => e === fileExtension));
+  const rule = rules.find((r) => r.extensions.some((e) => e.ext === fileExtension));
 
   log.debug('Found rule:', rule);
   return rule;
@@ -42,29 +71,27 @@ export async function jump(): Promise<void> {
   // FIXME: when workspace with multiple projects, probabily not working right now
   const editorFileName = editor.document.uri.fsPath;
   const fileName = workspace.asRelativePath(editorFileName);
-  const wsBaseDir = workspace.workspaceFolders?.[0].uri.fsPath;
+  const wsBaseDir = workspace.workspaceFolders?.[0].uri.fsPath || '';
   log.debug(`Editor file: ${editorFileName}`);
   log.debug(`Active file: ${fileName}`);
   log.debug(`Root path: ${wsBaseDir}`);
   // log.debug(`WorkspaceFolders: ${JSON.stringify(workspace.workspaceFolders)}`);
 
-  const fileExtension = path.extname(fileName);
-  log.debug(`File extention: ${fileExtension}`);
+  const parsedPath = path.parse(fileName);
+  log.debug(`File extention: ${parsedPath}`);
 
-  // const rule = findRule(fileExtension);
-  // if (rule) {
-  //   const related = match(fileExtension, fileName, rule);
-  //   log.debug(`Matched file: ${related}`);
-  // }
+  const rule = findRule(parsedPath.ext);
+  if (rule) {
+    const possibleMatches = match(parsedPath, rule);
+    log.debug(`Matched file: ${possibleMatches}`);
 
-  // for (const rule of rules) {
-  //   const related = match(fileName, rule);
-  //   log.debug(`Matched file: ${related}`);
-
-  //   if (related && fs.existsSync(related)) {
-  //     // const document = await workspace.openTextDocument(related);
-  //     // await window.showTextDocument(document);
-  //     return;
-  //   }
-  // }
+    for (const possibleFile of possibleMatches) {
+      const absoluteFile = path.join(wsBaseDir, possibleFile);
+      if (possibleFile && fs.existsSync(absoluteFile)) {
+        const document = await workspace.openTextDocument(absoluteFile);
+        await window.showTextDocument(document);
+        return;
+      }
+    }
+  }
 }

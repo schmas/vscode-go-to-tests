@@ -1,5 +1,10 @@
+export interface Extension {
+  ext: string;
+  testExt: string[];
+}
+
 export interface Rule {
-  extensions: string[];
+  extensions: Extension[];
   srcDirs: string[];
   testDirs: string[];
 }
@@ -10,7 +15,14 @@ export const DEFAULT_RULES: Rule[] = [
   ////////////////////////////////////////////////////////
   //--------------------//
 
-  { extensions: ['.ts', '.tsx'], srcDirs: ['/src'], testDirs: ['/src/test', '/src/__tests__', '/test', '/__tests__'] },
+  {
+    extensions: [
+      { ext: '.ts', testExt: ['.test.ts'] },
+      { ext: '.tsx', testExt: ['.test.tsx'] },
+    ],
+    srcDirs: ['src'],
+    testDirs: ['src/test', 'src/__tests__', 'test', '__tests__'],
+  },
 
   // // *.* => test/*.test.*
   // { pattern: '([^/]+)\\.([^/.]+)$', replacement: 'test/$1.test.$2' },
