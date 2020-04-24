@@ -2,7 +2,7 @@
   "name": "jump-to-tests",
   "displayName": "Jump to Tests",
   "description": "Switch between the code and the test file",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "publisher": "schmas",
   "engines": {
     "vscode": "^1.44.0"
@@ -66,7 +66,10 @@
     "pretest": "npm run compile",
     "test": "node ./out/test/runTest.js",
     "get-vscode-version": "echo $npm_package_engines_vscode",
-    "deploy": "vsce publish patch"
+    "package": "vsce package",
+		"deploy": "vsce publish -p",
+		"prune-branches": "git remote prune origin",
+		"clean": "git clean -fdX"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",

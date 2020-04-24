@@ -1,13 +1,13 @@
 name: build
 
-on:
-  push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
-    - develop
+on: repository_dispatch
+  # push:
+  #   branches:
+  #   - master
+  # pull_request:
+  #   branches:
+  #   - master
+  #   - develop
 
 jobs:
   build:
