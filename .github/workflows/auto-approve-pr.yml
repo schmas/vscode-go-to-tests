@@ -6,7 +6,14 @@ on:
 jobs:
   auto-approve:
     runs-on: ubuntu-latest
+
     steps:
+    - name: print github refs
+      run: |
+        echo "github.ref: ${{ github.ref }}"
+        echo "github.head_ref: ${{ github.head_ref }}"
+        echo "github.base_ref: ${{ github.base_ref }}"
+
     - uses: hmarr/auto-approve-action@v2.0.0
       if: github.head_ref == 'refs/heads/master' && github.base_ref == 'refs/heads/develop'
       with:
