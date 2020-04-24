@@ -15,6 +15,6 @@ jobs:
         echo "github.base_ref: ${{ github.base_ref }}"
 
     - uses: hmarr/auto-approve-action@v2.0.0
-      if: github.head_ref == 'refs/heads/master' && github.base_ref == 'refs/heads/develop'
+      if: github.head_ref == 'master' && github.base_ref == 'develop'
       with:
         github-token: "${{ secrets.GITHUB_TOKEN }}"
