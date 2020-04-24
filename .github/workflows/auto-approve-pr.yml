@@ -17,4 +17,4 @@ jobs:
     - uses: hmarr/auto-approve-action@v2.0.0
       if: github.head_ref == 'master' && github.base_ref == 'develop'
       with:
-        github-token: "${{ secrets.GITHUB_TOKEN }}"
+        github-token: "${{ secrets.BOT_GITHUB_TOKEN }}"
