@@ -10,7 +10,7 @@ On MacOS, press `Shift+Cmd+T`.
 
 On Windows / Linux, press `Shift+Ctrl+T`.
 
-The following formats are supported:
+<!-- The following formats are supported:
 
 | framework               | application file       | unit test file          |
 | ----------------------- | ---------------------- | ----------------------- |
@@ -26,11 +26,7 @@ The following formats are supported:
 | Ruby minitest           | `app/*.rb`             | `test/unit/*_test.rb`   |
 | Ruby minitest           | `app/controllers/*.rb` | `test/integration/*.rb` |
 
-† Also supports `.jsx`, `.ts`, `.tsx`.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+† Also supports `.jsx`, `.ts`, `.tsx`. -->
 
 ## Extension Settings
 
@@ -50,8 +46,6 @@ Here"s what it would look like to add Ruby on Rails support:
   }
 ]
 ```
-
-Effectively, this extension runs `path.replace(new RegExp(pattern), replacement)`. If the source file matches the regex the replaced filename exists, you"ll switch to that file. Otherwise, it will try the next rule.
 
 ## Release Notes
 
