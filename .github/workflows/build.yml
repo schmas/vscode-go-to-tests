@@ -26,26 +26,26 @@ jobs:
           node-version: 8.x
 
       - name: Get npm env
-        id: npm-cache
+        id: npm-env
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
           echo "::set-output name=vscode_version::$(npm run get-vscode-version --silent)"
 
-      - name: Cache npm
-        uses: actions/cache@v1
-        if: runner.os != 'Windows'
-        with:
-          path: ${{ steps.npm-cache.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      # - name: Cache npm
+      #   uses: actions/cache@v1
+      #   if: runner.os != 'Windows'
+      #   with:
+      #     path: ${{ steps.npm-env.outputs.dir }}
+      #     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-node-
 
-      - name: Cache vscode-test
-        id: cache-vscode-test
-        uses: actions/cache@v1
-        with:
-          path: .vscode-test
-          key: ${{ runner.os }}-vscode-test-${{ steps.npm-cache.outputs.vscode_version }}
+      # - name: Cache vscode-test
+      #   id: cache-vscode-test
+      #   uses: actions/cache@v1
+      #   with:
+      #     path: .vscode-test
+      #     key: ${{ runner.os }}-vscode-test-${{ steps.npm-env.outputs.vscode_version }}
 
       - run: npm install
 

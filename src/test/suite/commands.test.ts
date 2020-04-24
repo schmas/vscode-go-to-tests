@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import { before } from 'mocha';
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { findMatches } from '../../commands';
 import { log } from '../../loggingService';
@@ -13,8 +14,8 @@ function assertIn<T>(e: T, a: T[]): void {
 }
 
 function transitive(path1: string, path2: string): void {
-  assertIn(path2, findMatches(path1, ''));
-  assertIn(path1, findMatches(path2, ''));
+  assertIn(path.normalize(path2), findMatches(path1, ''));
+  assertIn(path.normalize(path1), findMatches(path2, ''));
 }
 
 suite('JavaScript / TypeScript', () => {
