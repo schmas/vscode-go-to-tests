@@ -17,7 +17,7 @@
   "activationEvents": [
     "onCommand:jump-to-tests.jump"
   ],
-  "main": "./out/main/extension.js",
+  "main": "./out/extension.js",
   "contributes": {
     "configuration": {
       "title": "Jump to Tests",
