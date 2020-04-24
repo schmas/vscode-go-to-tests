@@ -1,4 +1,4 @@
-name: Gitflow
+name: gitflow
 on: 
   # To create pull requests.
   push:
