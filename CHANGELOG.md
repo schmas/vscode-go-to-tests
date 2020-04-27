@@ -1,11 +1,24 @@
 ### Changelog
 
 #
+#### [v1.0.52](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.49...v1.0.52) (2020-04-27)
+
+##### Merged
+
+- develop [`#13`](https://github.com/schmas/vscode-jump-to-tests/pull/13)
+- master -&gt; develop [`#12`](https://github.com/schmas/vscode-jump-to-tests/pull/12)
+- dependabot updates [`#11`](https://github.com/schmas/vscode-jump-to-tests/pull/11)
+
+##### Continuous Integration
+
+* ci: mergify updated ([`f8aa327`](https://github.com/schmas/vscode-jump-to-tests/commit/f8aa3278a7d419b5ff338767103d4520f91c3547))
+* ci: auto aprove fix ([`d4fbb68`](https://github.com/schmas/vscode-jump-to-tests/commit/d4fbb6846f863eab07185139e8fb50bcc86b4c1d))
+
+#
 #### [v1.0.49](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.46...v1.0.49) (2020-04-27)
 
 ##### Merged
 
-- dependabot updates [`#11`](https://github.com/schmas/vscode-jump-to-tests/pull/11)
 - master -&gt; develop [`#10`](https://github.com/schmas/vscode-jump-to-tests/pull/10)
 
 ##### Continuous Integration
@@ -14,6 +27,7 @@
 
 ##### Commits
 
+- doc: fixed markplace url [`eb31af6`](https://github.com/schmas/vscode-jump-to-tests/commit/eb31af69ee5a15403f16d81ca300b7f17bd70ac0)
 - Merge pull request #6 from schmas/dependabot/npm_and_yarn/eslint-config-prettier-6.11.0 [`698112d`](https://github.com/schmas/vscode-jump-to-tests/commit/698112dafc2abc06b9c506da2f58190f3d695611)
 - Bump eslint-config-prettier from 6.10.1 to 6.11.0 [`e1de2ff`](https://github.com/schmas/vscode-jump-to-tests/commit/e1de2fff0180a6eff138f7d282a7db61464be0f0)
 
