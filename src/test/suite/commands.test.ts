@@ -48,4 +48,9 @@ suite('JavaScript / TypeScript', () => {
   test('xterm.js', () => {
     transitive('src/Terminal.ts', 'src/Terminal.test.ts');
   });
+
+  test('misc', () => {
+    transitive('src/client/component1/client_details1.ts', 'test/client/component1/client_details1.test.ts');
+    transitive('src/client/component1/client_details2.ts', 'tests/client/component1/client_details2.test.ts');
+  });
 });
