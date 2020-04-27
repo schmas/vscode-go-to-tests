@@ -1,23 +1,29 @@
 name: gitflow
-on: 
+
+on:
   # To create pull requests.
   push:
+    branches:
+      - release
+      - 'release/**'
+      # - master
+
   # To merge pull requests if not possible during the push run. Remove if `auto-merge` is `false`.
-  pull_request_review:
-  check_run:
-    types: [completed]
+  # pull_request_review:
+  # check_run:
+  # types: [completed]
 
 jobs:
   build:
-    name: Gitflow
+    name: gitflow
     runs-on: ubuntu-16.04
     steps:
-    - uses: Logerfo/gitflow-action@0.0.4
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        release: release
-        dev: develop
-        master: master
-        label: gitflow # The pull request label.
-        auto-merge: true # If `true`, will try to automatically merge pull requests. Can also be set to `pull_request_review`, `check_run`, `push`, or a comma-separated combination of these values to only merge when handling the named events.
-        require-merge: false # If an attempted merge fails, the action is considered to have failed.
+      - uses: Logerfo/gitflow-action@0.0.4
+        with:
+          github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          release: release
+          dev: develop
+          master: master
+          label: gitflow # The pull request label.
+          auto-merge: false # If `true`, will try to automatically merge pull requests. Can also be set to `pull_request_review`, `check_run`, `push`, or a comma-separated combination of these values to only merge when handling the named events.
+          require-merge: false # If an attempted merge fails, the action is considered to have failed.
