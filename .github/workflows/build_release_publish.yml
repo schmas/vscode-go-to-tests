@@ -112,7 +112,7 @@ jobs:
 
       - name: publish to vscode marketplace
         if: github.ref == 'refs/heads/master'
-        run: npm run deploy ${{ env.VSCODE_MARKETPLACE_TOKEN }}
+        run: npm run deploy -- ${{ env.VSCODE_MARKETPLACE_TOKEN }}
 
       - name: git push
         id: git-push
