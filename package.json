@@ -70,7 +70,7 @@
     "get-vscode-version": "echo $npm_package_engines_vscode",
     "get-project-name": "echo $npm_package_name",
     "package": "vsce package",
-		"deploy": "vsce publish -p",
+    "deploy": "vsce publish -p",
     "changelog": "auto-changelog -p --unreleased --commit-limit false",
     "changelog-release": "auto-changelog -p -u --commit-limit false --template .changelog-github-template.hbs --unreleased --stdout",
     "changelog-debug": "auto-changelog -p --template json --output changelog-data.json",
