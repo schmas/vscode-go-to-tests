@@ -12,14 +12,6 @@
     {{summary}}
   {{/if}}
 
-  {{#if merges}}
-    ##### Merged
-
-    {{#each merges}}
-      - {{#if commit.breaking}}**Breaking change:** {{/if}}{{message}} {{#if href}}[`#{{id}}`]({{href}}){{/if}}
-    {{/each}}
-  {{/if}}
-
   {{! lit commits with feature: in message, use feature: or Feature: }}
   {{#commit-list
     commits
@@ -62,5 +54,13 @@
     heading='##### Commits'}}
     - {{subject}} {{#if href}}[`{{shorthash}}`]({{href}}){{/if}}
   {{/commit-list}}
+
+  {{#if merges}}
+    ##### Merged
+
+    {{#each merges}}
+      - {{#if commit.breaking}}**Breaking change:** {{/if}}{{message}} {{#if href}}[`#{{id}}`]({{href}}){{/if}}
+    {{/each}}
+  {{/if}}
 
 {{/each}}
