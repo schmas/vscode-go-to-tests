@@ -9,11 +9,19 @@ pull_request_rules:
       merge:
         method: merge
 
-  - name: automatic merge for develop
+  - name: automatic merge to develop
     conditions:
       - "-head=master"
       - "#approved-reviews-by>=1"
       - base=develop
+    actions:
+      merge:
+        method: merge
+
+  - name: automatic merge to master
+    conditions:
+      - "#approved-reviews-by>=1"
+      - base=master
     actions:
       merge:
         method: merge
