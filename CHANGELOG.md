@@ -1,7 +1,29 @@
 ### Changelog
 
 #
+#### [v1.0.49](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.46...v1.0.49) (2020-04-27)
+
+##### Merged
+
+- dependabot updates [`#11`](https://github.com/schmas/vscode-jump-to-tests/pull/11)
+- master -&gt; develop [`#10`](https://github.com/schmas/vscode-jump-to-tests/pull/10)
+
+##### Continuous Integration
+
+* ci: cahngelog updated ([`f79aeed`](https://github.com/schmas/vscode-jump-to-tests/commit/f79aeedc6da1cb7073a8487674a7c6f81b645247))
+
+##### Commits
+
+- Merge pull request #6 from schmas/dependabot/npm_and_yarn/eslint-config-prettier-6.11.0 [`698112d`](https://github.com/schmas/vscode-jump-to-tests/commit/698112dafc2abc06b9c506da2f58190f3d695611)
+- Bump eslint-config-prettier from 6.10.1 to 6.11.0 [`e1de2ff`](https://github.com/schmas/vscode-jump-to-tests/commit/e1de2fff0180a6eff138f7d282a7db61464be0f0)
+
+#
 #### [v1.0.46](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.44...v1.0.46) (2020-04-27)
+
+##### Merged
+
+- Bump mocha from 7.1.1 to 7.1.2 [`#7`](https://github.com/schmas/vscode-jump-to-tests/pull/7)
+- master -&gt; develop [`#5`](https://github.com/schmas/vscode-jump-to-tests/pull/5)
 
 ##### Fixes
 
@@ -11,12 +33,15 @@
 ##### Continuous Integration
 
 * ci: github actions workflow to build release and publish extension ([`f54d459`](https://github.com/schmas/vscode-jump-to-tests/commit/f54d459538a9726ab8b0146378486a5ce649786d))
-* ci: cahngelog updated ([`f79aeed`](https://github.com/schmas/vscode-jump-to-tests/commit/f79aeedc6da1cb7073a8487674a7c6f81b645247))
 * ci: deploy fix ([`18c1689`](https://github.com/schmas/vscode-jump-to-tests/commit/18c16898ccefcc560e7cd0d7e140b606774b8e18))
 * ci: deploy argument fix ([`d2b0519`](https://github.com/schmas/vscode-jump-to-tests/commit/d2b051976cc055a5e9dde09148d9c547336b9744))
 
 ##### Commits
 
+- Merge pull request #8 from schmas/dependabot/npm_and_yarn/prettier-2.0.5 [`8d9e61c`](https://github.com/schmas/vscode-jump-to-tests/commit/8d9e61cc8f890516e7cabc2ea209e7d197aa7ea8)
+- Merge pull request #9 from schmas/dependabot/npm_and_yarn/types/node-13.13.4 [`0231446`](https://github.com/schmas/vscode-jump-to-tests/commit/02314468fda15a839550671001f0b84ef8c2949f)
+- Bump @types/node from 13.13.1 to 13.13.4 [`93220ab`](https://github.com/schmas/vscode-jump-to-tests/commit/93220ab6f5bc9ddb64adae595a9633791764e4d8)
+- Bump prettier from 2.0.4 to 2.0.5 [`0ceb9d7`](https://github.com/schmas/vscode-jump-to-tests/commit/0ceb9d7a6fbf81b8063355dd65e6c472d78aeea8)
 - doc: added marketplace badges [`ac753be`](https://github.com/schmas/vscode-jump-to-tests/commit/ac753becc9030337e04bdfa26433df1a4be5e902)
 
 #
