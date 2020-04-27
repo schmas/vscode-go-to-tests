@@ -1,11 +1,27 @@
 ### Changelog
 
 #
-#### [v1.0.55](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.52...v1.0.55) (2020-04-27)
+#### [v1.0.58](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.55...v1.0.58) (2020-04-27)
+
+##### Fixes
+
+* fix: fixed source at root folder ([`249f0d3`](https://github.com/schmas/vscode-jump-to-tests/commit/249f0d37188012c0637b1305392307cad2efa711))
 
 ##### Merged
 
+- develop -&gt; master [`#17`](https://github.com/schmas/vscode-jump-to-tests/pull/17)
+- master -&gt; develop [`#16`](https://github.com/schmas/vscode-jump-to-tests/pull/16)
 - ci: changelog adjustment [`#15`](https://github.com/schmas/vscode-jump-to-tests/pull/15)
+
+#
+#### [v1.0.55](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.52...v1.0.55) (2020-04-27)
+
+##### Continuous Integration
+
+* ci: changelog adjustment ([`ccdef06`](https://github.com/schmas/vscode-jump-to-tests/commit/ccdef06104141072098b906c100b84b114ad8900))
+
+##### Merged
+
 - master -&gt; develop [`#14`](https://github.com/schmas/vscode-jump-to-tests/pull/14)
 - develop [`#13`](https://github.com/schmas/vscode-jump-to-tests/pull/13)
 
