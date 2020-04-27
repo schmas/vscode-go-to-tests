@@ -1,0 +1,166 @@
+name: build_release_publish
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore: # dont run when changes made to these folders
+      - '.vscode/**'
+
+jobs:
+  test:
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: install Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - run: npm install
+
+      - name: run tests
+        uses: GabrielBB/xvfb-action@v1.0
+        with:
+          run: npm test
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: fetch all history and tags from all branches for gitversion
+        run: git fetch --prune --unshallow
+
+      - name: install gitversion tool
+        uses: gittools/actions/gitversion/setup@v0.9.2
+        with:
+          versionSpec: '5.2.x'
+
+      - name: execute gitversion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.2
+
+      - name: print gitversion
+        run: |
+          echo "Major: ${{ steps.gitversion.outputs.major }}"
+          echo "Minor: ${{ steps.gitversion.outputs.minor }}"
+          echo "Patch: ${{ steps.gitversion.outputs.patch }}"
+          echo "MajorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}"
+          echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: clean install dependencies
+        run: npm ci
+
+      - name: get npm env
+        id: npm-env
+        run: |
+          echo "::set-output name=project_name::$(npm run get-project-name --silent)"
+
+      # - name: update metadata in package.json
+      #   uses: onlyutkarsh/patch-files-action@v1.0.1
+      #   with:
+      #     files: '${{github.workspace}}/package.json'
+      #     patch-syntax: |
+      #       = /version => "${{ steps.gitversion.outputs.semVer }}"
+
+      - name: changelog
+        id: auto-changelog
+        if: github.ref == 'refs/heads/master'
+        run: |
+          changelog=$(npm run --silent changelog-release -- -v v${{ steps.gitversion.outputs.semVer }})
+          echo $changelog
+
+          changelog="${changelog//'%'/'%25'}"
+          changelog="${changelog//$'\n'/'%0A'}"
+          changelog="${changelog//$'\r'/'%0D'}"
+
+          echo "::set-output name=changelog::$changelog"
+
+      - name: npm version
+        id: npm-version
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git config user.email "$CI_USER@users.noreply.github.com"
+          git config user.name "continuous-integration"
+
+          npm version ${{ steps.gitversion.outputs.semVer }}
+        env:
+          CI_USER: ${{ secrets.CI_GITHUB_USER }}
+
+      - name: compile and create vsix
+        run: npm run package
+
+      - name: upload vsix as artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.npm-env.outputs.project_name }}-${{ steps.gitversion.outputs.semVer }}.vsix
+          path: ${{ github.workspace }}/${{ steps.npm-env.outputs.project_name }}-${{ steps.gitversion.outputs.semVer }}.vsix
+
+      - name: publish to vscode marketplace
+        if: github.ref == 'refs/heads/master'
+        run: npm run deploy -- -p $PAT
+        env:
+          PAT: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
+
+      - name: git push
+        id: git-push
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git push "https://$CI_USER:$CI_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD:master
+        env:
+          CI_USER: ${{ secrets.CI_GITHUB_USER }}
+          CI_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+
+      - name: create a release
+        id: create_release
+        if: github.ref == 'refs/heads/master'
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.gitversion.outputs.semVer }}
+          release_name: v${{ steps.gitversion.outputs.semVer }}
+          body: |
+            ${{ steps.auto-changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
+
+      - name: upload release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_name: ${{ steps.npm-env.outputs.project_name }}-${{ steps.gitversion.outputs.semVer }}.vsix
+          asset_path: ${{ github.workspace }}/${{ steps.npm-env.outputs.project_name }}-${{ steps.gitversion.outputs.semVer }}.vsix
+          asset_content_type: application/zip
+
+  pr-to-develop:
+    needs: release
+    name: pr-to-develop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Logerfo/gitflow-action@0.0.4
+        with:
+          github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          release: release
+          dev: develop
+          master: master
+          label: gitflow # The pull request label.
+          auto-merge: true # If `true`, will try to automatically merge pull requests. Can also be set to `pull_request_review`, `check_run`, `push`, or a comma-separated combination of these values to only merge when handling the named events.
+          require-merge: false # If an attempted merge fails, the action is considered to have failed.

@@ -1,17 +1,4 @@
-# Change Log
+### Changelog
 
-All notable changes to the "jump-to-tests" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
-
-## [0.0.1] - 2020-04-24
-
-- Initial Release
-
-## [0.0.2] - 2020-04-24
-
-- Initial Release
+#
+#### 1.0.44 (2020-04-27)

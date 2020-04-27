@@ -1,5 +1,8 @@
 # Jump to Tests
 
+[![version number](https://vsmarketplacebadge.apphb.com/version-short/schmas.jump-to-tests.svg)](https://vsmarketplacebadge.apphb.com/version-short/schmas.jump-to-tests)
+[![install count](https://vsmarketplacebadge.apphb.com/installs-short/schmas.jump-to-tests.svg)](https://marketplace.visualstudio.com/items?itemName=schmas.jump-to-tests)
+
 <!-- [![build](https://github.com/schmas/vscode-jump-to-tests/workflows/build/badge.svg?branch=master)]() -->
 
 Switch between the code and the test file.

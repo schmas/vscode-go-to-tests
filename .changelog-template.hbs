@@ -1,0 +1,66 @@
+### Changelog
+
+{{#each releases}}
+  #
+  {{#if href}}
+    #### [{{title}}]({{href}}) ({{isoDate}})
+  {{else}}
+    #### {{title}} ({{isoDate}})
+  {{/if}}
+
+  {{#if summary}}
+    {{summary}}
+  {{/if}}
+
+  {{#if merges}}
+    ##### Merged
+
+    {{#each merges}}
+      - {{#if commit.breaking}}**Breaking change:** {{/if}}{{message}} {{#if href}}[`#{{id}}`]({{href}}){{/if}}
+    {{/each}}
+  {{/if}}
+
+  {{! lit commits with feature: in message, use feature: or Feature: }}
+  {{#commit-list
+    commits
+    heading='##### Features'
+    message='(feature: )|(Feature: )'
+    exclude='(fix: )|(Fix: )|(break: )|(Break: )|(ci: )|(CI: )'}}
+    * {{subject}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+  {{! use fix: or Fix: }}
+  {{#commit-list
+    commits
+    heading='##### Fixes'
+    message='(fix: )|(Fix: )'
+    exclude='(break: )|(Break: )|(Feature: )|(feature: )|(ci: )|(CI: )'}}
+    * {{subject}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+  {{! user break: or Break: }}
+  {{#commit-list
+    commits
+    heading='##### Breaking changes'
+    message='(break: )|(Break: )'
+    exclude='(fix: )|(Fix: )|(Feature: )|(feature: )|(ci: )|(CI: )'}}
+    * {{subject}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+  {{! user ci: or CI: }}
+  {{#commit-list
+    commits
+    heading='##### Continuous Integration'
+    message='(ci: )|(CI: )'
+    exclude='(fix: )|(Fix: )|(Feature: )|(feature: )|(break: )|(Break: )'}}
+    * {{subject}} ([`{{shorthash}}`]({{href}}))
+  {{/commit-list}}
+
+  {{#commit-list
+    commits
+    exclude='(fix: )|(Fix: )|(Feature: )|(feature: )|(break: )|(Break: )|(ci: )|(CI: )'
+    heading='##### Commits'}}
+    - {{subject}} {{#if href}}[`{{shorthash}}`]({{href}}){{/if}}
+  {{/commit-list}}
+
+{{/each}}
