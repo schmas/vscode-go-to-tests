@@ -25,7 +25,7 @@ jobs:
 
       - run: npm install
 
-      - name: run testsC7a9l8a1!
+      - name: run tests
         uses: GabrielBB/xvfb-action@v1.0
         with:
           run: npm test
@@ -112,7 +112,9 @@ jobs:
 
       - name: publish to vscode marketplace
         if: github.ref == 'refs/heads/master'
-        run: npm run deploy -- -p ${{ env.VSCODE_MARKETPLACE_TOKEN }}
+        run: npm run deploy -- -p $PAT
+        env:
+          PAT: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
 
       - name: git push
         id: git-push
