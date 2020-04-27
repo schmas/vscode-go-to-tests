@@ -19,6 +19,6 @@ jobs:
           github-token: '${{ secrets.BOT_GITHUB_TOKEN }}'
       - name: auto approve schmas
         uses: hmarr/auto-approve-action@v2.0.0
-        if: github.head_ref == 'master' && github.actor == 'schmas'
+        if: github.head_ref != 'master' && github.actor == 'schmas'
         with:
           github-token: '${{ secrets.BOT_GITHUB_TOKEN }}'
