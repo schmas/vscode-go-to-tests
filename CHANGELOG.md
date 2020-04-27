@@ -1,25 +1,29 @@
 ### Changelog
 
 #
-#### [v1.0.52](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.49...v1.0.52) (2020-04-27)
+#### [v1.0.55](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.52...v1.0.55) (2020-04-27)
 
 ##### Merged
 
+- ci: changelog adjustment [`#15`](https://github.com/schmas/vscode-jump-to-tests/pull/15)
+- master -&gt; develop [`#14`](https://github.com/schmas/vscode-jump-to-tests/pull/14)
 - develop [`#13`](https://github.com/schmas/vscode-jump-to-tests/pull/13)
-- master -&gt; develop [`#12`](https://github.com/schmas/vscode-jump-to-tests/pull/12)
-- dependabot updates [`#11`](https://github.com/schmas/vscode-jump-to-tests/pull/11)
+
+#
+#### [v1.0.52](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.49...v1.0.52) (2020-04-27)
 
 ##### Continuous Integration
 
 * ci: mergify updated ([`f8aa327`](https://github.com/schmas/vscode-jump-to-tests/commit/f8aa3278a7d419b5ff338767103d4520f91c3547))
 * ci: auto aprove fix ([`d4fbb68`](https://github.com/schmas/vscode-jump-to-tests/commit/d4fbb6846f863eab07185139e8fb50bcc86b4c1d))
 
-#
-#### [v1.0.49](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.46...v1.0.49) (2020-04-27)
-
 ##### Merged
 
-- master -&gt; develop [`#10`](https://github.com/schmas/vscode-jump-to-tests/pull/10)
+- master -&gt; develop [`#12`](https://github.com/schmas/vscode-jump-to-tests/pull/12)
+- dependabot updates [`#11`](https://github.com/schmas/vscode-jump-to-tests/pull/11)
+
+#
+#### [v1.0.49](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.46...v1.0.49) (2020-04-27)
 
 ##### Continuous Integration
 
@@ -31,13 +35,12 @@
 - Merge pull request #6 from schmas/dependabot/npm_and_yarn/eslint-config-prettier-6.11.0 [`698112d`](https://github.com/schmas/vscode-jump-to-tests/commit/698112dafc2abc06b9c506da2f58190f3d695611)
 - Bump eslint-config-prettier from 6.10.1 to 6.11.0 [`e1de2ff`](https://github.com/schmas/vscode-jump-to-tests/commit/e1de2fff0180a6eff138f7d282a7db61464be0f0)
 
-#
-#### [v1.0.46](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.44...v1.0.46) (2020-04-27)
-
 ##### Merged
 
-- Bump mocha from 7.1.1 to 7.1.2 [`#7`](https://github.com/schmas/vscode-jump-to-tests/pull/7)
-- master -&gt; develop [`#5`](https://github.com/schmas/vscode-jump-to-tests/pull/5)
+- master -&gt; develop [`#10`](https://github.com/schmas/vscode-jump-to-tests/pull/10)
+
+#
+#### [v1.0.46](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.44...v1.0.46) (2020-04-27)
 
 ##### Fixes
 
@@ -58,15 +61,13 @@
 - Bump prettier from 2.0.4 to 2.0.5 [`0ceb9d7`](https://github.com/schmas/vscode-jump-to-tests/commit/0ceb9d7a6fbf81b8063355dd65e6c472d78aeea8)
 - doc: added marketplace badges [`ac753be`](https://github.com/schmas/vscode-jump-to-tests/commit/ac753becc9030337e04bdfa26433df1a4be5e902)
 
-#
-#### v1.0.44 (2020-04-24)
-
 ##### Merged
 
-- master -&gt; develop [`#4`](https://github.com/schmas/vscode-jump-to-tests/pull/4)
-- master -&gt; develop [`#3`](https://github.com/schmas/vscode-jump-to-tests/pull/3)
-- master -&gt; develop [`#2`](https://github.com/schmas/vscode-jump-to-tests/pull/2)
-- CI updated [`#1`](https://github.com/schmas/vscode-jump-to-tests/pull/1)
+- Bump mocha from 7.1.1 to 7.1.2 [`#7`](https://github.com/schmas/vscode-jump-to-tests/pull/7)
+- master -&gt; develop [`#5`](https://github.com/schmas/vscode-jump-to-tests/pull/5)
+
+#
+#### v1.0.44 (2020-04-24)
 
 ##### Commits
 
@@ -104,3 +105,10 @@
 - ci update [`1f8ae95`](https://github.com/schmas/vscode-jump-to-tests/commit/1f8ae9560c1074f87de5559d9b21d2c7e2604cf7)
 - ci updated [`0136142`](https://github.com/schmas/vscode-jump-to-tests/commit/0136142bc5e3d9ab42513af37f1ab90b67440185)
 - actions fix [`59f0460`](https://github.com/schmas/vscode-jump-to-tests/commit/59f0460b604f2ab80d7cbf17301b1f98d5cfc4e2)
+
+##### Merged
+
+- master -&gt; develop [`#4`](https://github.com/schmas/vscode-jump-to-tests/pull/4)
+- master -&gt; develop [`#3`](https://github.com/schmas/vscode-jump-to-tests/pull/3)
+- master -&gt; develop [`#2`](https://github.com/schmas/vscode-jump-to-tests/pull/2)
+- CI updated [`#1`](https://github.com/schmas/vscode-jump-to-tests/pull/1)
