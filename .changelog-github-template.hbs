@@ -49,13 +49,5 @@
       - {{subject}} {{#if href}}[`{{shorthash}}`]({{href}}){{/if}}
     {{/commit-list}}
 
-    {{#if merges}}
-      ##### Merged
-
-      {{#each merges}}
-        - {{#if commit.breaking}}**Breaking change:** {{/if}}{{message}} {{#if href}}[`#{{id}}`]({{href}}){{/if}}
-      {{/each}}
-    {{/if}}
-
   {{/if}}
 {{/each}}
