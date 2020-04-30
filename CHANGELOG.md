@@ -1,6 +1,13 @@
 ### Changelog
 
 #
+#### [v1.0.64](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.61...v1.0.64) (2020-04-30)
+
+##### Fixes
+
+* fix: minor fix ([`508c9db`](https://github.com/schmas/vscode-jump-to-tests/commit/508c9db42c4cfb86dfdf7d180762b332b9fc2c2d))
+
+#
 #### [v1.0.61](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.58...v1.0.61) (2020-04-28)
 
 ##### Continuous Integration
