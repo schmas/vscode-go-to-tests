@@ -16,7 +16,7 @@ function transforConfigRules(configRules: RuleConfig[]): RuleRecord {
       const { ext, testExts } = extension;
       let srcRule = sourceRules[ext];
       if (!!!srcRule) {
-        srcRule = new Rule(ext);
+        srcRule = new Rule(ext, false);
         sourceRules[ext] = srcRule;
       }
       srcRule.addSourceDirs(srcDirs);
@@ -25,7 +25,7 @@ function transforConfigRules(configRules: RuleConfig[]): RuleRecord {
       for (const testExt of testExts) {
         let testRule = testRules[testExt];
         if (!!!testRule) {
-          testRule = new Rule(testExt);
+          testRule = new Rule(testExt, true);
           testRules[testExt] = testRule;
         }
         testRule.addSourceDirs(testDirs);

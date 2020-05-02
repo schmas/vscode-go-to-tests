@@ -6,8 +6,9 @@ import { window, workspace } from 'vscode';
 import { getRules } from './config';
 import { log } from './loggingService';
 import { Rule } from './Rule';
+import { Match } from './Match';
 
-export function match(wsBaseDir: string, parsedPath: ParsedPath, rule?: Rule): string[] {
+export function match(wsBaseDir: string, parsedPath: ParsedPath, rule?: Rule): Match {
   const possibleMatches: string[] = [];
   if (!!rule) {
     const { base, dir } = parsedPath;
@@ -22,7 +23,7 @@ export function match(wsBaseDir: string, parsedPath: ParsedPath, rule?: Rule): s
     }
   }
 
-  return possibleMatches;
+  return new Match(parsedPath, possibleMatches, rule);
 }
 
 function findRule(baseFileName: string): Rule | undefined {
@@ -31,7 +32,14 @@ function findRule(baseFileName: string): Rule | undefined {
   return rule;
 }
 
-export function findMatches(fileName: string, wsBaseDir: string): string[] {
+function warn(message: string, match: Match): void {
+  log.warn(message, match);
+  window.showWarningMessage(message, 'Output').then(() => {
+    log.show();
+  });
+}
+
+export function findMatches(fileName: string, wsBaseDir: string): Match {
   const parsedPath = path.parse(fileName);
   log.debug('File extention:', parsedPath);
   const rule = findRule(parsedPath.base);
@@ -55,13 +63,21 @@ export async function jump(): Promise<void> {
   log.debug(`Root path: ${wsBaseDir}`);
   // log.debug(`WorkspaceFolders: ${JSON.stringify(workspace.workspaceFolders)}`);
 
-  const possibleMatches = findMatches(fileName, wsBaseDir);
+  const match = findMatches(fileName, wsBaseDir);
 
-  for (const possibleFile of possibleMatches) {
+  for (const possibleFile of match.possibleMatches) {
     if (fs.existsSync(possibleFile)) {
       const document = await workspace.openTextDocument(possibleFile);
       await window.showTextDocument(document);
       return;
     }
+  }
+
+  if (!match.hasRule()) {
+    warn(`No rules matched for file: ${match.getFileName()}`, match);
+  } else if (match.isTest()) {
+    warn(`No test files matched for: ${match.getFileName()}`, match);
+  } else {
+    warn(`No source files matched for: ${match.getFileName()}`, match);
   }
 }
