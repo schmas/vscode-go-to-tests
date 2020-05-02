@@ -41,9 +41,9 @@ suite('JavaScript / TypeScript', () => {
   //   transitive('src/__tests__/file.test.tsx', 'src/file.ts');
   // });
 
-  // test('new VSCode', () => {
-  //   transitive('src/extension.ts', 'src/test/suite/extension.test.ts');
-  // });
+  test('new VSCode', () => {
+    transitive('src/extension.ts', 'src/test/suite/extension.test.ts');
+  });
 
   test('xterm.js', () => {
     transitive('src/Terminal.ts', 'src/Terminal.test.ts');
