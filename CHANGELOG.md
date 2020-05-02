@@ -1,6 +1,18 @@
 ### Changelog
 
 #
+#### [v1.0.67](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.64...v1.0.67) (2020-05-02)
+
+##### Features
+
+* feature: added link to output ([`4e8c209`](https://github.com/schmas/vscode-jump-to-tests/commit/4e8c2095ba5f4d2da459d4ec82fa3f5d2793bc7a))
+* feature: added option to override rules ([`98bbce7`](https://github.com/schmas/vscode-jump-to-tests/commit/98bbce79a4b6717e266f8af6b8713ebb66e3b210))
+
+##### Commits
+
+- test: added back [`82c585f`](https://github.com/schmas/vscode-jump-to-tests/commit/82c585fbcd17edf7587eac7ce3324161cc046c8f)
+
+#
 #### [v1.0.64](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.61...v1.0.64) (2020-04-30)
 
 ##### Fixes
