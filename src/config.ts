@@ -16,7 +16,7 @@ function transforConfigRules(configRules: RuleConfig[]): RuleRecord {
       const { ext, testExts } = extension;
       let srcRule = sourceRules[ext];
       if (!!!srcRule) {
-        srcRule = new Rule(ext);
+        srcRule = new Rule(ext, false);
         sourceRules[ext] = srcRule;
       }
       srcRule.addSourceDirs(srcDirs);
@@ -25,7 +25,7 @@ function transforConfigRules(configRules: RuleConfig[]): RuleRecord {
       for (const testExt of testExts) {
         let testRule = testRules[testExt];
         if (!!!testRule) {
-          testRule = new Rule(testExt);
+          testRule = new Rule(testExt, true);
           testRules[testExt] = testRule;
         }
         testRule.addSourceDirs(testDirs);
@@ -43,7 +43,9 @@ export const getRules = (): RuleRecord => rules;
 export function updateRulesConfig(): void {
   const configuration = workspace.getConfiguration('jump-to-tests');
   const extraRules: RuleConfig[] = configuration.get('rules') || [];
-  const configRules = [...extraRules, ...DEFAULT_RULES];
+  const override: boolean = configuration.get('overrideRules') || false;
+
+  const configRules = override ? [...extraRules] : [...extraRules, ...DEFAULT_RULES];
 
   rules = transforConfigRules(configRules);
 }

@@ -21,7 +21,7 @@ export const DEFAULT_RULES: RuleConfig[] = [
       { ext: '.js', testExts: ['.test.js', '.test.jsx'] },
       { ext: '.jsx', testExts: ['.test.jsx', '.test.js'] },
     ],
-    srcDirs: ['src', ''],
-    testDirs: ['src/test', 'src/test/suite', 'src/__tests__', '__tests__', 'tests', 'test', 'src'],
+    srcDirs: ['src', 'app', ''],
+    testDirs: ['src/test', 'src/test/suite', 'tests', 'test', 'src', 'app', ''],
   },
 ];

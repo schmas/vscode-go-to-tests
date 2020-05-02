@@ -3,9 +3,11 @@ export class Rule {
   sourceDirs: string[] = [];
   targetExts: string[] = [];
   targetDirs: string[] = [];
+  isTest: boolean;
 
-  constructor(fromExt: string) {
+  constructor(fromExt: string, isTest: boolean) {
     this.sourceExt = fromExt;
+    this.isTest = isTest;
   }
 
   addSourceDir(dir: string): void {
