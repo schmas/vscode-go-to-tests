@@ -4,11 +4,17 @@
   "description": "Switch between the code and the test file",
   "version": "1.0.64",
   "publisher": "schmas",
+  "preview": true,
+  "homepage": "https://github.com/schmas/vscode-jump-to-tests/blob/develop/README.md",
   "engines": {
     "vscode": "^1.44.0"
   },
   "repository": {
-    "url": "https://github.com/schmas/vscode-jump-to-tests"
+    "type": "git",
+    "url": "https://github.com/schmas/vscode-jump-to-tests.git"
+  },
+  "bugs": {
+    "url": "https://github.com/schmas/vscode-jump-to-tests/issues"
   },
   "icon": "images/jump-to-tests.png",
   "categories": [
@@ -23,9 +29,67 @@
       "title": "Jump to Tests",
       "properties": {
         "jump-to-tests.rules": {
+          "markdownDescription": "Rules, can extend or override default rules. [Default rules.](https://github.com/schmas/vscode-jump-to-tests/blob/develop/src/rules.ts) ",
           "type": "array",
-          "description": "Additional rules - see extension description",
+          "items": {
+            "description": "rule object",
+            "type": "object",
+            "properties": {
+              "extensions": {
+                "description": "extensions for this rule",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ext": {
+                      "type": "string",
+                      "description": "extension source ex: .js"
+                    },
+                    "testExts": {
+                      "description": "extensions target",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "extension ex: .test.js"
+                      }
+                    }
+                  },
+                  "required": [
+                    "ext",
+                    "testExts"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "srcDirs": {
+                "description": "project source dirs",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "testDirs": {
+                "description": "project test dirs",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "extensions",
+              "srcDirs",
+              "testDirs"
+            ],
+            "additionalProperties": false
+          },
           "default": [],
+          "scope": "resource"
+        },
+        "jump-to-tests.overrideRules": {
+          "description": "Should override default rules configuration? If disabled will extend.",
+          "type": "boolean",
+          "default": false,
           "scope": "resource"
         },
         "jump-to-tests.logLevel": {
@@ -38,7 +102,6 @@
             "NONE"
           ],
           "default": "INFO",
-          "markdownDescription": "Log Level",
           "scope": "resource"
         }
       }

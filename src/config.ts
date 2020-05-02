@@ -43,7 +43,9 @@ export const getRules = (): RuleRecord => rules;
 export function updateRulesConfig(): void {
   const configuration = workspace.getConfiguration('jump-to-tests');
   const extraRules: RuleConfig[] = configuration.get('rules') || [];
-  const configRules = [...extraRules, ...DEFAULT_RULES];
+  const override: boolean = configuration.get('overrideRules') || false;
+
+  const configRules = override ? [...extraRules] : [...extraRules, ...DEFAULT_RULES];
 
   rules = transforConfigRules(configRules);
 }
