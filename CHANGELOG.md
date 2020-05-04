@@ -1,6 +1,13 @@
 ### Changelog
 
 #
+#### [v1.0.70](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.67...v1.0.70) (2020-05-04)
+
+##### Fixes
+
+* fix: default rules updated ([`10b3ea5`](https://github.com/schmas/vscode-jump-to-tests/commit/10b3ea5ebcff321bc96cbbff7bceef4bb76a1148))
+
+#
 #### [v1.0.67](https://github.com/schmas/vscode-jump-to-tests/compare/v1.0.64...v1.0.67) (2020-05-02)
 
 ##### Features
