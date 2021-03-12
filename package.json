@@ -154,7 +154,7 @@
     "glob": "^7.1.6",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
-    "mocha": "^7.1.2",
+    "mocha": "^8.3.2",
     "prettier": "^2.0.5",
     "typescript": "^3.8.3",
     "vsce": "^1.75.0",
